@@ -26,6 +26,10 @@ export const PIECES = [
       [0, 1, 1]
     ],
     [
+      [0, 1, 1],
+      [1, 1, 0]
+    ],
+    [
       [1, 1],
       [0, 1],
       [0 ,1]
@@ -38,5 +42,5 @@ export const PIECES = [
   ]
 
   export const COLORS = [
-    'red', 'green', 'yellow', 'blue', 'orange'
+    'red', 'green', 'yellow', 'blue', 'orange', 'purple'
   ]

@@ -19,14 +19,15 @@ function createBoard(width, height) {
   return Array(height).fill().map(() => Array(width).fill(0))
 }
 
-
 // 4.- Pieza Player
 const piece = {
   position: {
     x: BOARD_WIDTH/2 -2,
     y: 0
   },
+  color: COLORS[Math.floor(Math.random() * COLORS.length)],
   shape: PIECES[Math.floor(Math.random() * PIECES.length)]
+  
 }
 
 let dropCounter = 0
@@ -59,7 +60,7 @@ function draw(){
   board.forEach((row, y) => {
     row.forEach((value, x) => {
       if(value === 1) {
-        context.fillStyle = 'green'
+        context.fillStyle = 'grey'
         context.fillRect(x, y, 1, 1)
       }
     })
@@ -68,7 +69,7 @@ function draw(){
   piece.shape.forEach((row, y) => {
     row.forEach((value, x) => {
       if (value){
-        context.fillStyle = 'red'
+        context.fillStyle = piece.color
         context.fillRect(x + piece.position.x, y + piece.position.y, 1, 1)
       }  
     })
@@ -95,6 +96,7 @@ document.addEventListener('keydown', event =>{
     if (checkCollision()){
       piece.position.y--
       solidifyPiece()
+      piece.color = COLORS[Math.floor(Math.random() * COLORS.length)]
       removeRows() 
     }
   }
@@ -170,6 +172,14 @@ function removeRows(){
   })
 }
 
-update()
+const $section = document.querySelector('section')
+
+$section.addEventListener('click', () => {
+  update()
+
+  $section.remove()
+
+})
+
 
 
